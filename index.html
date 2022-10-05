@@ -7,20 +7,29 @@
     <title>To Do List</title>
   </head>
   <body>
-    <script>
-      let todo1 = "Get groceries";
-      let todo2 = "Wash Car";
-      let todo3 = "Make dinner";
+    <input id="todo-title" type="text" />
+    <button onclick="addTodo()">Add Todo</button>
 
-      function addTodo(todoTitle) {
-        let element = document.createElement("div");
-        element.innerText = todoTitle;
-        document.body.appendChild(element);
+    <div id="todo-list"></div>
+    <script>
+      let todos = ["Get groceries", "Wash car", "Make dinner"];
+
+      function render() {
+        document.getElementById("todo-list").innerHTML = "";
+        todos.forEach(function (todoTitle) {
+          let todoList = document.getElementById("todo-list");
+          let element = document.createElement("div");
+          element.innerText = todoTitle;
+          todoList.appendChild(element);
+        });
       }
 
-      addTodo(todo1);
-      addTodo(todo2);
-      addTodo(todo3);
+      function addTodo() {
+        let textbox = document.getElementById("todo-title");
+        let title = textbox.value;
+        todos.push(title);
+        render();
+      }
     </script>
   </body>
 </html>
